@@ -1601,6 +1601,66 @@
         Creando clase MiClase
                 </code></pre>
             `
+        },
+        advanced_topics: {
+            title: "Advanced Topics in Python",
+            content: `
+                <p>Welcome to the Advanced Topics section. Here, we will cover some of the more complex and powerful features of Python.</p>
+                
+                <h2>Decorators</h2>
+                <p>Decorators are a powerful tool in Python that allows you to modify the behavior of a function or class. They are often used for logging, access control, memoization, and more.</p>
+                <pre><code class="language-python">def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()</code></pre>
+                <p>This will output:</p>
+                <pre><code>Something is happening before the function is called.
+Hello!
+Something is happening after the function is called.</code></pre>
+                
+                <h2>Generators</h2>
+                <p>Generators are a simple way of creating iterators. They allow you to declare a function that behaves like an iterator, i.e., it can be used in a for loop.</p>
+                <pre><code class="language-python">def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+for value in my_generator():
+    print(value)</code></pre>
+                <p>This will output:</p>
+                <pre><code>1
+2
+3</code></pre>
+                
+                <h2>Context Managers</h2>
+                <p>Context managers allow you to allocate and release resources precisely when you want to. The most widely used example of context managers is the <code>with</code> statement.</p>
+                <pre><code class="language-python">with open('file.txt', 'r') as file:
+    content = file.read()
+    print(content)</code></pre>
+                <p>This will open the file, read its content, and then close the file automatically.</p>
+                
+                <h2>Metaclasses</h2>
+                <p>Metaclasses are a way to create classes in Python. They are a more advanced and complex feature of Python, and are typically used in frameworks and libraries.</p>
+                <pre><code class="language-python">class MyMeta(type):
+    def __new__(cls, name, bases, dct):
+        print(f"Creating class {name}")
+        return super().__new__(cls, name, bases, dct)
+
+class MyClass(metaclass=MyMeta):
+    pass
+
+instance = MyClass()</code></pre>
+                <p>This will output:</p>
+                <pre><code>Creating class MyClass</code></pre>
+            `
         }
     };
 

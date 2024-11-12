@@ -1,0 +1,590 @@
+/* ================================
+   1. VARIABLES
+=============================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Light Theme Colors */
+:root {
+    --primary-color: #35b646;        /* Python Blue */
+    --secondary-color: #aae2d2;      /* Python Yellow */
+    --accent-color: #35b646;         /* Slightly darker blue for accents */
+    --background-color: #e4ffe1;     /* Light Gray */
+    --text-color: #333333;           /* Dark Gray */
+    --light-text-color: #555555;     /* Medium Gray for secondary text */
+    --spinner-color: #35b646;        /* Spinner Python Blue */
+    --dropdown-bg: #FFFFFF;           /* White background for dropdowns */
+    --dropdown-hover: #F0F0F0;       /* Light hover for dropdown items */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --transition-speed: 0.3s;        /* Standard transition speed */
+}
+
+/* Dark Theme Colors */
+body.dark-mode {
+    --primary-color: #1E1E1E;        /* Near Black */
+    --secondary-color: #178726;      /* Python Yellow remains for contrast */
+    --accent-color: #178726;         /* Python Blue */
+    --background-color: #010802;     /* Dark Background */
+    --text-color: #FFFFFF;           /* White Text */
+    --light-text-color: #CCCCCC;     /* Light Gray for secondary text */
+    --spinner-color: #178726;        /* Spinner Python Yellow */
+    --dropdown-bg: #1E1E1E;           /* Dark background for dropdowns */
+    --dropdown-hover: #333333;       /* Dark hover for dropdown items */
+    --shadow-color: rgba(255, 255, 255, 0.1); /* Light shadow */
+}
+
+/* ================================
+   2. RESET & BOX-SIZING
+=============================== */
+
+/* Reset default browser styles and set box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default list styles */
+ul {
+    list-style: none;
+}
+
+/* Remove default link styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ================================
+   3. BODY & TYPOGRAPHY
+=============================== */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+    font-size: 16px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 1rem;
+    color: var(--light-text-color);
+    font-weight: 400;
+}
+
+/* ================================
+   4. LOADING SPINNER
+=============================== */
+
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 6px solid #f3f3f3; /* Light Gray */
+    border-top: 6px solid var(--spinner-color); /* Spinner Color */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    z-index: 9999;
+    display: none; /* Hidden by default */
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ================================
+   5. NAVBAR
+=============================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color var(--transition-speed) ease;
+}
+
+/* Logo */
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    transition: color var(--transition-speed) ease;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+/* Dropdown Button */
+.nav-links .dropdown-btn {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+/* Hover Effect for Dropdown Buttons */
+.nav-links .dropdown-btn:hover {
+    color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Remove focus outline for aesthetic */
+.nav-links .dropdown-btn:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Dropdown Container */
+.nav-links .dropdown-container {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--dropdown-bg);
+    padding: 10px 0;
+    min-width: 220px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    border-radius: 4px;
+    z-index: 1000;
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Display dropdown when active */
+.nav-links .dropdown-btn.active + .dropdown-container {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Dropdown Links */
+.nav-links .dropdown-container a {
+    color: var(--text-color);
+    padding: 10px 20px;
+    display: block;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-weight: 400;
+}
+
+.nav-links .dropdown-container a:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+
+/* ================================
+   6. SEARCH BAR
+=============================== */
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    transition: width var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--text-color);
+}
+
+.search-bar input::placeholder {
+    color: var(--light-text-color);
+}
+
+.search-bar input:focus {
+    width: 250px;
+    box-shadow: 0 0 8px var(--primary-color);
+}
+
+.search-bar button {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    font-size: 0.9rem;
+}
+
+.search-bar button:hover {
+    background-color: #e0b90f; /* Slightly darker yellow */
+    transform: scale(1.05);
+}
+
+.search-bar button:active {
+    transform: scale(0.95);
+}
+
+/* Suggestion Box */
+.suggestion-box {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    display: none;
+    z-index: 1001;
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.suggestion-box.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.suggestion-box li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-weight: 400;
+}
+
+.suggestion-box li:hover {
+    background-color: var(--dropdown-hover);
+    color: var(--primary-color);
+    border-radius: 0 4px 4px 0;
+}
+
+/* ================================
+   7. THEME TOGGLE BUTTON
+=============================== */
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    transition: color var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    color: var(--secondary-color);
+}
+
+.theme-toggle:focus {
+    outline: none;
+    color: var(--secondary-color);
+}
+
+/* ================================
+   8. CONTENT AREA
+=============================== */
+
+.content {
+    max-width: 1200px;
+    margin: 100px auto 40px; /* Adjusted for navbar height */
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+    background-color: var(--dropdown-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.content.show {
+    opacity: 1;
+    transition: opacity var(--transition-speed) ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sections within Content */
+.content section {
+    margin-bottom: 2rem;
+}
+
+/* Highlighted Text for Search */
+.highlight {
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* ================================
+   9. FOOTER
+=============================== */
+
+.footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 -2px 4px var(--shadow-color);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-size: 0.9rem;
+}
+
+/* ================================FOOTER
+   10. RESPONSIVENESS
+=============================== */
+
+@media (max-width: 992px) {
+    .search-bar input {
+        width: 150px;
+    }
+
+    .search-bar input:focus {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Hamburger Menu */
+    .navbar .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #FFFFFF;
+    }
+
+    /* Show search bar and theme toggle in column */
+    .search-bar {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .theme-toggle {
+        margin-left: 0;
+    }
+}
+
+/* ================================
+   11. DARK MODE SPECIFIC STYLES
+=============================== */
+
+/* Adjust background and text colors in dark mode */
+body.dark-mode .navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+body.dark-mode .logo {
+    color: #FFFFFF;
+}
+
+body.dark-mode .nav-links .dropdown-btn {
+    color: #FFFFFF;
+}
+
+body.dark-mode .nav-links .dropdown-btn:hover,
+body.dark-mode .nav-links .dropdown-btn:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--secondary-color);
+}
+
+body.dark-mode .nav-links .dropdown-container {
+    background-color: var(--dropdown-bg);
+}
+
+body.dark-mode .nav-links .dropdown-container a {
+    color: #FFFFFF;
+}
+
+body.dark-mode .nav-links .dropdown-container a:hover {
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+}
+
+body.dark-mode .search-bar input {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+body.dark-mode .search-bar input::placeholder {
+    color: #BBBBBB;
+}
+
+body.dark-mode .search-bar button {
+    background-color: var(--secondary-color);
+}
+
+body.dark-mode .suggestion-box {
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+body.dark-mode .suggestion-box li {
+    color: #FFFFFF;
+}
+
+body.dark-mode .suggestion-box li:hover {
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+}
+
+body.dark-mode .content {
+    background-color: #1E1E1E;
+    color: var(--text-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+body.dark-mode .footer {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    box-shadow: 0 -2px 4px var(--shadow-color);
+}
+
+/* ================================
+   12. ADDITIONAL STYLES
+=============================== */
+
+/* Buttons within Content */
+.content button,
+.content .btn {
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.content button:hover,
+.content .btn:hover {
+    background-color: #086114; /* Slightly darker yellow */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content button:active,
+.content .btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Responsive Images */
+.content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    transition: transform var(--transition-speed) ease;
+}
+
+.content img:hover {
+    transform: scale(1.02);
+}
+
+/* ================================
+   13. HAMBURGER MENU (Optional)
+=============================== */
+
+/* Hide hamburger menu by default */
+.navbar .hamburger {
+    display: none;
+}
+
+/* Show hamburger menu on smaller screens */
+@media (max-width: 768px) {
+    .navbar .hamburger {
+        display: block;
+    }
+
+    /* Toggle visibility of nav-links */
+    .nav-links.active {
+        display: flex;
+    }
+}

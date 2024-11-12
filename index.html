@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- ... other head elements ... -->
+    <title>Guía Completa de Python para Principiantes</title>
+    <!-- Enlace al CSS actualizado -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Font Awesome para iconos -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" 
+    />
+
+    <!-- Highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/obsidian.min.css">
+</head>
+<body>
+
+    <!-- Spinner de Carga -->
+    <div id="loading-spinner" class="loading-spinner" aria-hidden="true"></div>
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="logo">Python Guide</div>
+        
+        <!-- Hamburger Menu (Optional) -->
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Enlaces de Navegación -->
+        <ul class="nav-links">
+            <li>
+                <button class="dropdown-btn">Basico Pythone</button>
+                <div class="dropdown-container">
+                    <a href="#" data-target="sintaxis">Sintaxis Basica</a>
+                    <a href="#" data-target="variables">Variables</a>
+                    <a href="#" data-target="tipos_datos">Tipos de datos</a>
+                    <a href="#" data-target="methodes">Metodos</a>
+                </div>
+            </li>
+            
+            <li>
+                <button class="dropdown-btn">Control Flow</button>
+                <div class="dropdown-container">
+                    <a href="#" data-target="if_else">If-Else</a>
+                    <a href="#" data-target="loops">Loops</a>
+                    <a href="#" data-target="comprehensions">Comprehensions</a>
+                </div>
+            </li>
+            
+            <li>
+                <button class="dropdown-btn">Functions & Modules</button>
+                <div class="dropdown-container">
+                    <a href="#" data-target="functions">Functions</a>
+                    <a href="#" data-target="modules">Modules</a>
+                    <a href="#" data-target="imports">Importing Modules</a>
+                </div>
+            </li>
+            
+            <li>
+                <button class="dropdown-btn">Data Structures</button>
+                <div class="dropdown-container">
+                    <a href="#" data-target="lists">Lists</a>
+                    <a href="#" data-target="tuples">Tuples</a>
+                    <a href="#" data-target="Diccionarios">Dictionaries</a>
+                    <a href="#" data-target="sets">Sets</a>
+                </div>
+            </li>
+            
+            <li>
+                <button class="dropdown-btn">Object-Oriented Programming</button>
+                <div class="dropdown-container">
+                    <a href="#" data-target="oop">Introduction to OOP</a>
+                    <a href="#" data-target="classes">Classes & Objects</a>
+                    <a href="#" data-target="inheritance">Inheritance</a>
+                    <a href="#" data-target="polymorphism">Polymorphism</a>
+                </div>
+            </li>
+
+            <li>
+                <button id="toggle-dropdowns" class="btn">Toggle All</button>
+            </li>
+        </ul>
+        
+        <!-- Barra de Búsqueda -->
+        <div class="search-bar">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search Python Topics..." 
+                aria-label="Search"
+            >
+            <button 
+                id="search-button" 
+                aria-label="Search Button"
+            >
+                <i class="fas fa-search"></i>
+            </button>
+            <ul 
+                id="suggestion-box" 
+                class="suggestion-box" 
+                aria-label="Search Suggestions"
+            ></ul>
+        </div>
+
+        <!-- Botón de Toggle de Modo Oscuro -->
+        <button 
+            id="theme-toggle" 
+            class="theme-toggle" 
+            aria-label="Toggle Dark Mode"
+        >
+            <i class="fas fa-moon"></i>
+        </button>
+
+    </nav>
+
+    <!-- Área de Contenido Principal -->
+    <div class="content" id="content">
+        <!-- El contenido se cargará dinámicamente aquí -->
+    </div>
+
+    <!-- Pie de Página -->
+    <footer class="footer">
+        <p>&copy; 2024 Python Guide. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Highlight.js Library -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <!-- Include the language definitions you need -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/python.min.js"></script>
+    <!-- Initialize Highlight.js -->
+    <script>
+      hljs.highlightAll();
+    </script>
+</body>
+</html>

@@ -7,29 +7,29 @@
 
 /* Light Theme Colors */
 :root {
-    --primary-color: #35b646;        /* Python Blue */
-    --secondary-color: #aae2d2;      /* Python Yellow */
-    --accent-color: #35b646;         /* Slightly darker blue for accents */
-    --background-color: #e4ffe1;     /* Light Gray */
-    --text-color: #333333;           /* Dark Gray */
-    --light-text-color: #555555;     /* Medium Gray for secondary text */
-    --spinner-color: #35b646;        /* Spinner Python Blue */
-    --dropdown-bg: #FFFFFF;           /* White background for dropdowns */
-    --dropdown-hover: #F0F0F0;       /* Light hover for dropdown items */
-    --shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    --primary-color: #4CAF50;        /* Modern Green */
+    --secondary-color: #FF9800;      /* Modern Orange */
+    --accent-color: #FF5722;         /* Modern Red */
+    --background-color: #F5F5F5;     /* Light Gray */
+    --text-color: #212121;           /* Dark Gray */
+    --light-text-color: #757575;     /* Medium Gray for secondary text */
+    --spinner-color: #4CAF50;        /* Spinner Green */
+    --dropdown-bg: #FFFFFF;          /* White background for dropdowns */
+    --dropdown-hover: #EEEEEE;       /* Light hover for dropdown items */
+    --shadow-color: rgba(0, 0, 0, 0.2); /* Subtle shadow */
     --transition-speed: 0.3s;        /* Standard transition speed */
 }
 
 /* Dark Theme Colors */
 body.dark-mode {
     --primary-color: #1E1E1E;        /* Near Black */
-    --secondary-color: #178726;      /* Python Yellow remains for contrast */
-    --accent-color: #178726;         /* Python Blue */
-    --background-color: #010802;     /* Dark Background */
-    --text-color: #FFFFFF;           /* White Text */
-    --light-text-color: #CCCCCC;     /* Light Gray for secondary text */
-    --spinner-color: #178726;        /* Spinner Python Yellow */
-    --dropdown-bg: #1E1E1E;           /* Dark background for dropdowns */
+    --secondary-color: #FF9800;      /* Modern Orange */
+    --accent-color: #FF5722;         /* Modern Red */
+    --background-color: #121212;     /* Dark Background */
+    --text-color: #E0E0E0;           /* Light Gray */
+    --light-text-color: #BDBDBD;     /* Medium Gray for secondary text */
+    --spinner-color: #FF9800;        /* Spinner Orange */
+    --dropdown-bg: #1E1E1E;          /* Dark background for dropdowns */
     --dropdown-hover: #333333;       /* Dark hover for dropdown items */
     --shadow-color: rgba(255, 255, 255, 0.1); /* Light shadow */
 }
@@ -161,7 +161,6 @@ p {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
 }
 
 /* Hover Effect for Dropdown Buttons */
@@ -543,7 +542,7 @@ body.dark-mode .footer {
 
 .content button:hover,
 .content .btn:hover {
-    background-color: #086114; /* Slightly darker yellow */
+    background-color: #e65100; /* Slightly darker orange */
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

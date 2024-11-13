@@ -525,7 +525,7 @@
             <p>Estas sentencias controlan el flujo de los bucles.</p>
             <h3><code>break</code></h3>
             <p>Termina el bucle inmediatamente, independientemente de la condición.</p>
-            <h4>Ejemplo de <code>break</code></h4>
+            <h4>Ejemplo de <code>break</h4>
             <pre><code class="language-python">
             for num in range(10):
             if num == 5:
@@ -543,7 +543,7 @@
             
             <h3><code>continue</code></h3>
             <p>Omite la iteración actual y continúa con la siguiente.</p>
-            <h4>Ejemplo de <code>continue</code></h4>
+            <h4>Ejemplo de <code>continue</h4>
             <pre><code class="language-python">for num in range(5):
             if num == 2:
                 continue
@@ -2032,4 +2032,116 @@ instance = MyClass()</code></pre>
 
     // Inicializar la aplicación cuando el DOM esté completamente cargado
     document.addEventListener('DOMContentLoaded', initializeApp);
+
+    /**
+     * Agrega desplazamiento suave para enlaces de navegación.
+     */
+    const addSmoothScrolling = () => {
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    };
+
+    /**
+     * Implementa efectos de hover para botones, enlaces y otros elementos interactivos.
+     */
+    const addHoverEffects = () => {
+        const interactiveElements = document.querySelectorAll('button, a, .dropdown-btn');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseover', () => {
+                element.classList.add('hover');
+            });
+            element.addEventListener('mouseout', () => {
+                element.classList.remove('hover');
+            });
+        });
+    };
+
+    /**
+     * Mejora la barra de búsqueda con sugerencias de autocompletado.
+     */
+    const enhanceSearchBar = () => {
+        const searchInput = document.getElementById('search-input');
+        const suggestionBox = document.getElementById('suggestion-box');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            if (query.length > 0) {
+                const suggestions = Object.keys(pages).filter(page => page.toLowerCase().includes(query));
+                suggestionBox.innerHTML = suggestions.map(suggestion => `<li>${suggestion}</li>`).join('');
+                suggestionBox.style.display = 'block';
+            } else {
+                suggestionBox.style.display = 'none';
+            }
+        });
+
+        suggestionBox.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                searchInput.value = event.target.textContent;
+                suggestionBox.style.display = 'none';
+                searchContent(searchInput.value);
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!suggestionBox.contains(event.target) && event.target !== searchInput) {
+                suggestionBox.style.display = 'none';
+            }
+        });
+    };
+
+    /**
+     * Agrega funcionalidad al botón de volver arriba.
+     */
+    const addBackToTopButton = () => {
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    };
+
+    /**
+     * Implementa la funcionalidad de la barra de navegación fija.
+     */
+    const implementStickyNavbar = () => {
+        const navbar = document.querySelector('.navbar');
+        const sticky = navbar.offsetTop;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= sticky) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+    };
+
+    // Llamar a las funciones adicionales
+    addSmoothScrolling();
+    addHoverEffects();
+    enhanceSearchBar();
+    addBackToTopButton();
+    implementStickyNavbar();
 })();
